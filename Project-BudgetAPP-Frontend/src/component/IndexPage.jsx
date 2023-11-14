@@ -25,7 +25,7 @@ async function fetchIndex() {
 }
   return (
       <table>
-         <body>
+         <tbody>
           <tr>
            <th>Date</th>
            <th>Category</th>
@@ -35,19 +35,18 @@ async function fetchIndex() {
           return (
             <tr key={element.id}>
              <td>
-              <Link to={`/budget/${element.id}`}>{element.date}</Link>
+              <Link to={`budget/${element.id}`}>{element.date}</Link>
               </td>
               <td>
-                <Link to={`/budget/${element.id}`}>{element.category}</Link>
+                <Link to={`budget/${element.id}`}>{element.category}</Link>
               </td>
               <td>
-                <Link to={`/budget/${element.id}`}>{element.amount}</Link>
+                <Link to={`budget/${element.id}`}>{element.amount}</Link>
               </td>
-              
             </tr>
           );
         })}
-      </body>
+      </tbody>
     </table> 
   );
 }
