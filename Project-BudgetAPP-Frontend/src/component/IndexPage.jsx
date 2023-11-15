@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
  function IndexPage() {
  const API = import.meta.env.VITE_API_KEY;
- const [money, setMoney] = useState([]);
+ let [total, setTotal] = useState(0);
+const [money, setMoney] = useState([]);
+
 
 useEffect(() => {
    fetchIndex();
@@ -16,14 +18,35 @@ useEffect(() => {
 
 async function fetchIndex() {
     try {
-      let result = await axios.get(`${API}/budget`)
-       console.log(result.data)
-       setMoney(result.data);
-    } catch (error) {
-     console.log(error)
- }
-}
+      let result = await axios.get(`${API}/budget`);
+       console.log(result.data);
+      //  setMoney(result.data);
+
+       for (let i of result.data) {
+         setTotal((total += Number(i.amount)));
+       }
+        setMoney(result.data)
+      
+        } catch (error) {
+        console.log(error);
+     }
+    }
+    
+    function color(total) {
+      if (total > 100) return "green";
+      else if (total < 0) return "red";
+      else if (0 > total < 100) return "yellow";
+    }
+    
+
   return (
+   <>
+     <div>
+        <h2>
+          Bank Account Toatl:{" "}
+          <span style={{ color: `${color(total)}` }}>{total}</span>
+        </h2>
+      </div>
       <table>
          <tbody>
           <tr>
@@ -48,6 +71,7 @@ async function fetchIndex() {
         })}
       </tbody>
     </table> 
+  </>  
   );
 }
 

@@ -7,6 +7,7 @@ import axios from "axios";
   const navigate = useNavigate();
   const API = import.meta.env.VITE_API_KEY;
   const { id } = useParams();
+
   const [money, setMoney] = useState("");
 
     useEffect(() => {
@@ -16,7 +17,7 @@ import axios from "axios";
   async function fetchShowPage() {
      try{
         let result = await axios.get(`${API}/budget/${id}`);
-        console.log(result.data);
+        // console.log(result.data);
         setMoney(result.data);
       } catch (error) {
        console.log(error);
