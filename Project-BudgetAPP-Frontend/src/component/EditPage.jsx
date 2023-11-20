@@ -6,7 +6,7 @@ import axios from "axios";
 function EditPage() {
 const API = import.meta.env.VITE_API_KEY;
 const navigate = useNavigate();
-const { id } = useParams();
+const index = useParams();
 
 const [item_name, setItem_Name] = useState("");
 const [amount,setAmount] = useState(0);
@@ -20,7 +20,7 @@ useEffect(() => {
 
   async function fetchEditLog(){
       try{
-       let result = await axios.get(`${API}/budget/${id}`);
+       let result = await axios.get(`${API}/budget/${index}`);
       //  console.log(result);
        setItem_Name(result.data.item_name);
        setAmount(result.data.amount);
@@ -36,7 +36,7 @@ async function submitButton(e){
   e.prevent.default();
     try {                           // edit page is prefilled
                                     // edit is the endpoint here
-        await axios.put(`${API}/budget/${id}`, {
+        await axios.put(`${API}/budget/${index}`, {
         item_name: item_name,
         amount: amount,
         date: date,

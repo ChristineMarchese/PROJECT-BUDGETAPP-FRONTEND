@@ -6,7 +6,7 @@ import axios from "axios";
  function ShowPage() {
   const navigate = useNavigate();
   const API = import.meta.env.VITE_API_KEY;
-  const { id } = useParams();
+  const index  = useParams();
 
   const [money, setMoney] = useState("");
 
@@ -16,7 +16,7 @@ import axios from "axios";
 
   async function fetchShowPage() {
      try{
-        let result = await axios.get(`${API}/budget/${id}`);
+        let result = await axios.get(`${API}/budget/${index}`);
         // console.log(result.data);
         setMoney(result.data);
       } catch (error) {
@@ -29,12 +29,12 @@ import axios from "axios";
   }
 
   function editButton() {
-    navigate(`/budget/${id}/edit`)
+    navigate(`/budget/${index}/edit`)
   }
 
   async function deleteButton() {
      try{
-      await axios.delete(`${API}/budget/${id}`);
+      await axios.delete(`${API}/budget/${index}`);
        navigate(`/budget`);
      } catch (error) {
        console.log(error);
