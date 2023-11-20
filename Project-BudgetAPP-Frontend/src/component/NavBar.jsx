@@ -17,7 +17,9 @@ import { useNavigate } from "react-router-dom";
 
   <div>
     <h1 onClick={newBudget}>Budget App</h1>
+    <br />
     <button onClick={newButton}>New Transaction</button>
+    <br />
     </div>
   )
 }

@@ -23,6 +23,7 @@ async function fetchIndex() {
    }
   return (
    <>
+     <div>
       <table>
          <tbody>
           <tr>
@@ -47,6 +48,7 @@ async function fetchIndex() {
         })}
       </tbody>
     </table> 
+  </div>
   </>  
   );
 }
